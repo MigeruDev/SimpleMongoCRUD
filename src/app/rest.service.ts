@@ -5,7 +5,7 @@ import {of} from "rxjs/observable/of";
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'https://ucuencadental.azurewebsites.net/';
+const endpoint = 'http://localhost:8000/flights/';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -29,6 +29,11 @@ export class RestService {
 
   getEquipos(): Observable<any> {
     return this.http.get(endpoint + 'equipos/all').pipe(
+      map(this.extractData));
+  }
+
+  getFlightNumber(number): Observable<any> {
+    return this.http.get(endpoint + 'number/'+number).pipe(
       map(this.extractData));
   }
 

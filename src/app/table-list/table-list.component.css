@@ -63,31 +63,31 @@ h4.card-category{
 /* Mat Rows&Columns CSS*/
 
 .mat-column-id {
-  flex: 0 0 5% !important;
-  width: 5% !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
 }
 
-.mat-column-nombre {
+.mat-column-flightnum {
   flex: 0 0 15% !important;
   width: 15% !important;
 }
 
-.mat-column-marca {
+.mat-column-year {
+  flex: 0 0 7% !important;
+  width: 7% !important;
+}
+
+.mat-column-origin {
   flex: 0 0 10% !important;
   width: 10% !important;
 }
 
-.mat-column-fecha {
-  flex: 0 0 8% !important;
-  width: 8% !important;
-}
-
-.mat-column-stock {
-  flex: 0 0 5% !important;
-  width: 5% !important;
-}
-
-.mat-column-estado {
+.mat-column-dest {
   flex: 0 0 10% !important;
   width: 10% !important;
+}
+
+.mat-column-deptime {
+  flex: 0 0 20% !important;
+  width: 20% !important;
 }

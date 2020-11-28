@@ -4,47 +4,71 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-danger card-expansion">
-                      <h4 class="card-title">Agregar Productos</h4>
-                      <p class="card-category">Ingreso de datos de nuevos productos</p>
+                      <h4 class="card-title">Ingreso de vuelo</h4>
+                      <p class="card-category">Puede ingresar la información de varios vuelos a la vez</p>
                   </div>
                   <div class="card-body">
                       <form>
+                          <!--
                           <mat-form-field>
                               <input name="PersonaEntrega" matInput placeholder="Nombre de la persona que entrega la orden" [(ngModel)]="personaEntrega" required>
                           </mat-form-field>
-                          <button mat-raised-button type="submit" class="btn btn-primary col-md-12" (click)="enviarProductos()" >Ingresar todos los Productos</button>
+                          -->
+                          <button mat-raised-button type="submit" class="btn btn-primary col-md-12" (click)="enviarProductos()" >Ingresar todos los vuelos</button>
                           <div class="row card-product" *ngFor="let product of products; let rowIndex = index">
                             <div class="col-md-10">
                               <div class="row">
+                                <!--
                                 <mat-form-field class="col-md-4">
+                                  
                                   <mat-select name="CategoriaId-{{rowIndex}}" placeholder="Categoria" [(ngModel)]="product.categoria" required>
                                     <mat-option [value]="1">Equipo</mat-option>
                                     <mat-option [value]="2">Insumo</mat-option>
                                     <mat-option [value]="3">Instrumento</mat-option>
                                   </mat-select>
+
                                 </mat-form-field>
+                                -->
                                 <mat-form-field class="col-md-4">
-                                  <input name="Id-{{rowIndex}}" matInput placeholder="ID" type="number" class="example-right-align" [(ngModel)]="product.id" required>
+                                  <input name="Id-{{rowIndex}}" matInput placeholder="Número de vuelo" [(ngModel)]="product.id" required>
                                   <span matPrefix>#&nbsp;</span>
                                 </mat-form-field>
+                                
                               </div>
                               
+                              <!--
                               <mat-form-field>
                                 <input name="NombreId-{{rowIndex}}" matInput placeholder="Nombre del Producto" [(ngModel)]="product.nombre" required>
                               </mat-form-field>
-                            
+                              -->
+                              <!--
                               <mat-form-field>
                                 <textarea name="DescripcionId-{{rowIndex}}" matInput placeholder="Descripcion" [(ngModel)]="product.descripcion"></textarea>
                               </mat-form-field>
 
-                              <mat-form-field>
+                              <mat-form-field *ngIf="product.categoria!==2">
                                   <textarea name="ObservacionId-{{rowIndex}}" matInput placeholder="Observacion" [(ngModel)]="product.observacion"></textarea>
                               </mat-form-field>
+                              -->
 
                               <div class="row">
-                                <mat-form-field *ngIf="product.categoria==1" class="col-md-3">
-                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Marca" [(ngModel)]="product.marca" required>
+                                <mat-form-field class="col-md-3">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Año" [(ngModel)]="product.marca" required>
                                 </mat-form-field>
+
+                                <mat-form-field class="col-md-3">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Actual Departure Time" [(ngModel)]="product.marca" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="col-md-3">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Actual Arrival Time" [(ngModel)]="product.marca" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="col-md-3">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Unique Carrier Code" [(ngModel)]="product.marca" required>
+                                </mat-form-field>
+                                
+                                <!--
                                 <mat-form-field class="col-md-3">
                                   <mat-select name="StateId-{{rowIndex}}" placeholder="Estado" [(ngModel)]="product.estado" required>
                                     <mat-option value="Buen estado">Buen estado</mat-option>
@@ -63,8 +87,22 @@
                                   <input name="StockId-{{rowIndex}}" matInput placeholder="Stock" type="number" class="example-right-align" [(ngModel)]="product.stock" required>
                                   <span matPrefix>#&nbsp;</span>
                                 </mat-form-field>
+                                -->
 
                               </div>
+
+                              <div class="row">
+                                <mat-form-field class="col-md-6">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Origen" [(ngModel)]="product.marca" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="col-md-6">
+                                  <input name="MarcaId-{{rowIndex}}" matInput placeholder="Destino" [(ngModel)]="product.marca" required>
+                                </mat-form-field>
+
+                              </div>
+
+
 
                             </div>
                             <div class="col-md-2">

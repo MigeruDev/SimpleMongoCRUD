@@ -16,7 +16,7 @@ export class TableListComponent implements OnInit {
 
   panelOpenState: boolean = false;
 
-  inventarios = [
+  /* inventarios = [
     'Insumos',
     'Instrumentos',
     'Equipos',
@@ -28,9 +28,11 @@ export class TableListComponent implements OnInit {
     'Equipos': ['id', 'nombre','marca', 'descripcion', 'fecha','observacion','stock', 'estado'],
     'Insumos': ['id', 'nombre','descripcion', 'fecha','caducidad', 'precio','stock'],
     'Instrumentos': ['id', 'nombre', 'descripcion', 'fecha','observacion','stock', 'estado']
-  }
+  } */
 
-  displayedColumns = this.productColumns[this.inventarioItem];
+  //displayedColumns = this.productColumns[this.inventarioItem];
+
+  displayedColumns = ['id', 'year','flightnum', 'origin','dest', 'deptime','cancelled'];
 
   dataSource: MatTableDataSource<any>;
 
@@ -44,7 +46,8 @@ export class TableListComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.getInsumos();
+    //this.getInsumos();
+    this.getFlightNumber("1");
   }
 
   ngOnInit() {
@@ -66,7 +69,7 @@ export class TableListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  getEquipos() {
+  /* getEquipos() {
     this.rest.getEquipos().subscribe((data: {}) => {
       this.dataSource.data = data['data']
     });
@@ -82,31 +85,39 @@ export class TableListComponent implements OnInit {
     this.rest.getInsumos().subscribe((data: {}) => {
       this.dataSource.data = data['data']
     });
+  } */
+
+  getFlightNumber(number) {
+    this.rest.getFlightNumber(number).subscribe((data: any[]) => {
+      this.dataSource.data = data
+      //console.log(data)
+    });
   }
 
-  controlInventario() {
+  /* controlInventario() {
     this.rest.controlInventario({"nombre": "Inventario "+new Date(),
-                                 "descripcion": "",
-                                 "observacion": ""
+                                 "descripcion": "Buenos dias profes",
+                                 "observacion": "Esta es una prueba"
                                             }).subscribe((result) => {
       console.log(result);
     }, (err) => {
       console.log(err);
     });
-  }
+  } */
 
   refresh(){
-    this.displayedColumns = this.productColumns[this.inventarioItem];
+    //this.displayedColumns = this.productColumns[this.inventarioItem];
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    if (this.inventarioItem==="Equipos")
+    /*if (this.inventarioItem==="Equipos")
       this.getEquipos()
     if (this.inventarioItem==="Instrumentos")
       this.getInstrumentos()
     if (this.inventarioItem==="Insumos")
       this.getInsumos()
+    */
   }
 }
 

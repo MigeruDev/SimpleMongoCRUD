@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   products = [{
     "categoria": 0,
-    "id": 0,
+    "id": "",
     "nombre": "",
     "descripcion": "",
     "precio_unitario": 0,
@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
   nuevoProducto() {
     this.products.push({
       "categoria": 0,
-      "id": 0,
+      "id": "",
       "nombre": "",
       "descripcion": "",
       "precio_unitario": 0,
