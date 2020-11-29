@@ -27,7 +27,6 @@ export class NotificationsComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.getInventarios()
   }
 
   ngOnInit() {
@@ -49,10 +48,4 @@ export class NotificationsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  getInventarios() {
-    this.rest.getInventarios().subscribe((data: {}) => {
-      this.dataSource.data = data['data'];
-      console.log(data['data']);
-    });
-  }
 }
