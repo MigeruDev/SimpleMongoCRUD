@@ -43,7 +43,16 @@ export class RestService {
     );
   }  
 
-  
+  deleteFlight (_id): Observable<any> {
+    console.log();
+    return this.http.delete<any>(endpoint + 'delete/'+_id, httpOptions).pipe(
+      tap((flight) => console.log(`delete flight w/ id=${flight}`)),
+      catchError(this.handleError<any>('eliminar vuelo'))
+    );
+
+  }
+
+
 
 
   private handleError<T> (operation = 'operation', result?: T) {

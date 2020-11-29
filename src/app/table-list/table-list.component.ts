@@ -81,8 +81,16 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  deleteFlight(_id) {
-    console.log(_id)
+  deleteFlight(flight) {
+    this.rest.deleteFlight(flight._id).subscribe((data: any) => {
+      console.log(data)
+      /* const index = this.dataSource.data.indexOf(flight, 0);
+      if (this.dataSource.data.length>1){
+        if (index > -1) {
+          this.dataSource.data.splice(index, 1);
+        }
+      } */
+    });
   }
 
   refresh(){
