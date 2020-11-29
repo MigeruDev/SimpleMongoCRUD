@@ -1,5 +1,6 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, Inject} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,31 +17,19 @@ export class TableListComponent implements OnInit {
 
   panelOpenState: boolean = false;
 
-  /* inventarios = [
-    'Insumos',
-    'Instrumentos',
-    'Equipos',
-  ];
-
-  inventarioItem: string = this.inventarios[0];
-
-  productColumns = {
-    'Equipos': ['id', 'nombre','marca', 'descripcion', 'fecha','observacion','stock', 'estado'],
-    'Insumos': ['id', 'nombre','descripcion', 'fecha','caducidad', 'precio','stock'],
-    'Instrumentos': ['id', 'nombre', 'descripcion', 'fecha','observacion','stock', 'estado']
-  } */
-
-  //displayedColumns = this.productColumns[this.inventarioItem];
-
-  displayedColumns = ['id', 'year','flightnum', 'origin','dest', 'deptime','cancelled'];
+  displayedColumns = ['id', 'year','flightnum', 'origin','dest', 'deptime','cancelled', 'crud'];
 
   dataSource: MatTableDataSource<any>;
+
+  animal: string;
+  name: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {
+  constructor(public rest:RestService, private route: ActivatedRoute, 
+    public dialog: MatDialog, private router: Router) {
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource();
@@ -48,6 +37,22 @@ export class TableListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     //this.getInsumos();
     this.getFlightNumber("1");
+  }
+
+  openDialog(flight): void {
+    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '350px',
+      data: flight
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.rest.updateFlight(flight._id, flight).subscribe((result) => {
+        console.log(result);
+      }, (err) => {
+        console.log(err);
+      });
+    });
   }
 
   ngOnInit() {
@@ -69,24 +74,6 @@ export class TableListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  /* getEquipos() {
-    this.rest.getEquipos().subscribe((data: {}) => {
-      this.dataSource.data = data['data']
-    });
-  }
-
-  getInstrumentos() {
-    this.rest.getInstrumentos().subscribe((data: {}) => {
-      this.dataSource.data = data['data']
-    });
-  }
-
-  getInsumos() {
-    this.rest.getInsumos().subscribe((data: {}) => {
-      this.dataSource.data = data['data']
-    });
-  } */
-
   getFlightNumber(number) {
     this.rest.getFlightNumber(number).subscribe((data: any[]) => {
       this.dataSource.data = data
@@ -94,16 +81,9 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  /* controlInventario() {
-    this.rest.controlInventario({"nombre": "Inventario "+new Date(),
-                                 "descripcion": "Buenos dias profes",
-                                 "observacion": "Esta es una prueba"
-                                            }).subscribe((result) => {
-      console.log(result);
-    }, (err) => {
-      console.log(err);
-    });
-  } */
+  deleteFlight(_id) {
+    console.log(_id)
+  }
 
   refresh(){
     //this.displayedColumns = this.productColumns[this.inventarioItem];
@@ -111,26 +91,21 @@ export class TableListComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    /*if (this.inventarioItem==="Equipos")
-      this.getEquipos()
-    if (this.inventarioItem==="Instrumentos")
-      this.getInstrumentos()
-    if (this.inventarioItem==="Insumos")
-      this.getInsumos()
-    */
   }
 }
 
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
 
-/*
-export interface Equipos {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  precioUnitario: number;
-  stock: number;
-  activo: boolean;
-  createdAt: string;
-  updatedAt: string;
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
-*/

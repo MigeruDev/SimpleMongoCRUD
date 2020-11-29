@@ -22,54 +22,29 @@ export class RestService {
     return body || { };
   }
 
-  getProducts(): Observable<any> {
-    return this.http.get(endpoint + 'producto/all').pipe(
-      map(this.extractData));
-  }
-
-  getEquipos(): Observable<any> {
-    return this.http.get(endpoint + 'equipos/all').pipe(
-      map(this.extractData));
-  }
-
   getFlightNumber(number): Observable<any> {
     return this.http.get(endpoint + 'number/'+number).pipe(
       map(this.extractData));
   }
 
-  getInsumos(): Observable<any> {
-    return this.http.get(endpoint + 'insumos/all').pipe(
-      map(this.extractData));
-  }
-
-  getInstrumentos(): Observable<any> {
-    return this.http.get(endpoint + 'instrumentos/all').pipe(
-      map(this.extractData));
-  }
-
-  getInventarios(): Observable<any> {
-    return this.http.get(endpoint + 'inventarios/control/all').pipe(
-      map(this.extractData));
-  }
-
-  
-
-  setProducts (products): Observable<any> {
-    console.log(products);
-    return this.http.post<any>(endpoint + 'data/new', JSON.stringify(products), httpOptions).pipe(
-      tap((products) => console.log(`generate products w/ id=${products.data}`)),
-      catchError(this.handleError<any>('generaProducts'))
+  addNewFlight (flight): Observable<any> {
+    console.log(flight);
+    return this.http.post<any>(endpoint + 'new', JSON.stringify(flight), httpOptions).pipe(
+      tap((flight) => console.log(`generate flights w/ id=${flight}`)),
+      catchError(this.handleError<any>('generar Vuelo'))
     );
   }
 
-  controlInventario (inventario): Observable<any> {
-    console.log(inventario);
-    return this.http.post<any>(endpoint + 'inventarios/control/new', JSON.stringify(inventario), httpOptions).pipe(
-      tap((inventario) => console.log(`generate Inventory w/ id=${inventario}`)),
-      catchError(this.handleError<any>('generaInventario'))
+  updateFlight (_id, flight): Observable<any> {
+    console.log(flight);
+    return this.http.put<any>(endpoint + 'update/'+_id, JSON.stringify(flight), httpOptions).pipe(
+      tap((flight) => console.log(`generate flights w/ id=${flight}`)),
+      catchError(this.handleError<any>('actualizar Vuelo'))
     );
-  }
+  }  
+
   
+
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

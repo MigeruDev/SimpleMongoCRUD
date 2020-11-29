@@ -29,43 +29,56 @@
                                         <mat-cell *matCellDef="let row"> {{row._id}} </mat-cell>
                                     </ng-container>
 
-                                    <!-- Description Column -->
+                                    <!-- Flight Number Column -->
                                     <ng-container matColumnDef="flightnum">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Número de vuelo</mat-header-cell>
                                         <mat-cell *matCellDef="let row"> {{row.FlightNum}} </mat-cell>
                                     </ng-container>
 
-                                    <!-- Name Column -->
+                                    <!-- Year Column -->
                                     <ng-container matColumnDef="year">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Año</mat-header-cell>
                                         <mat-cell *matCellDef="let row"> {{row.Year}} </mat-cell>
                                     </ng-container>
 
-                                    <!-- Stock Column -->
+                                    <!-- Cancelled status Column -->
                                     <ng-container matColumnDef="cancelled">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Cancelado </mat-header-cell>
                                         <mat-cell *matCellDef="let row" > {{row.Cancelled}}
                                         </mat-cell>
                                     </ng-container>
 
-                                    <!-- Date Column -->
+                                    <!-- Origin Column -->
                                     <ng-container matColumnDef="origin">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Origen</mat-header-cell>
                                         <mat-cell *matCellDef="let row" > {{row.Origin}}
                                         </mat-cell>
                                     </ng-container>
 
-                                    <!-- Date Column -->
+                                    <!-- Destine Column -->
                                     <ng-container matColumnDef="dest">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Destino</mat-header-cell>
                                         <mat-cell *matCellDef="let row" > {{row.Dest}}
                                         </mat-cell>
                                     </ng-container>
 
-                                    <!-- Price Column -->
+                                    <!-- Departure Time Column -->
                                     <ng-container matColumnDef="deptime">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Actual Departure Time</mat-header-cell>
                                         <mat-cell *matCellDef="let row" > {{row.DepTime}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <!-- CRUD Column -->
+                                    <ng-container matColumnDef="crud">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                                        <mat-cell *matCellDef="let row" > 
+                                            <button mat-icon-button color="primary" class="pull-right" (click)="openDialog(row)">
+                                                <mat-icon aria-label="Actualizar vuelo">edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button color="warn" class="pull-right" (click)="deleteFlight(row._id)">
+                                                <mat-icon aria-label="Eliminar vuelo">delete</mat-icon>
+                                            </button>
                                         </mat-cell>
                                     </ng-container>
 
@@ -78,9 +91,6 @@
                             </div>
                         </div>
 
-                        <!--
-                        <button mat-raised-button type="submit" class="btn btn-primary col-md-12" (click)="controlInventario()" >Realizar Control Inventario</button>
-                        -->
                     </div>
                 </div>
             </div>
