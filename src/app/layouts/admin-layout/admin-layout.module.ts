@@ -3,14 +3,9 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent,  DialogOverviewExampleDialog} from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { FlightInsertComponent } from '../../flight-insert/flight-insert.component';
+import { FlightHistoryComponent,  DialogOverviewExampleDialog} from '../../flight-history/flight-history.component';
+import { DevsComponent } from '../../devs/devs.component';
 
 import {
   MatButtonModule,
@@ -47,18 +42,13 @@ import {
     MatDialogModule
   ],
   declarations: [
-    DashboardComponent,
-    UserProfileComponent,
-    TableListComponent,
+    FlightInsertComponent,
+    FlightHistoryComponent,
+    DevsComponent,
     DialogOverviewExampleDialog,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    UpgradeComponent,
   ],
-  entryComponents: [TableListComponent, DialogOverviewExampleDialog],
-  bootstrap: [TableListComponent],
+  entryComponents: [FlightHistoryComponent, DialogOverviewExampleDialog],
+  bootstrap: [FlightHistoryComponent],
   providers: []
 })
 

@@ -9,11 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
  */
 
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-flight-history',
+  templateUrl: './flight-history.component.html',
+  styleUrls: ['./flight-history.component.css']
 })
-export class TableListComponent implements OnInit {
+export class FlightHistoryComponent implements OnInit {
 
   panelOpenState: boolean = false;
 
@@ -36,7 +36,7 @@ export class TableListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     //this.getInsumos();
-    this.getFlightNumber("1");
+    this.getFlightNumber("1451");
   }
 
   openDialog(flight): void {
@@ -77,7 +77,6 @@ export class TableListComponent implements OnInit {
   getFlightNumber(number) {
     this.rest.getFlightNumber(number).subscribe((data: any[]) => {
       this.dataSource.data = data
-      //console.log(data)
     });
   }
 

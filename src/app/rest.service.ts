@@ -5,7 +5,7 @@ import {of} from "rxjs/observable/of";
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'http://localhost:8000/flights/';
+const endpoint = 'https://airlines-backend.netlify.app/.netlify/functions/app/flights/';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -51,8 +51,6 @@ export class RestService {
     );
 
   }
-
-
 
 
   private handleError<T> (operation = 'operation', result?: T) {

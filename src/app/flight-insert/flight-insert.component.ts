@@ -3,11 +3,11 @@ import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: 'app-flight-insert',
+  templateUrl: './flight-insert.component.html',
+  styleUrls: ['./flight-insert.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class FlightInsertComponent implements OnInit {
 
 
   flights = [{

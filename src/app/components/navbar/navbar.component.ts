@@ -114,7 +114,7 @@ export class NavbarComponent implements OnInit {
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 2 );
       }
-      titlee = titlee.split('/user-profile').pop();
+      titlee = titlee.split('/flight-insert').pop();
 
       for(var item = 0; item < this.listTitles.length; item++){
           if(this.listTitles[item].path === titlee){
