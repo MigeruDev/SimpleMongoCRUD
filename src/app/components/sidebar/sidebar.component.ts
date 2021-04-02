@@ -10,7 +10,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/flight-insert', title: 'Ingresar Vuelo',  icon:'note_add', class: '' },
     { path: '/flight-history', title: 'Monitorizar',  icon:'content_paste', class: '' },
-    //{ path: '/devs', title: 'Developers',  icon:'content_paste', class: '' },
+    { path: '/extra', title: 'Orquestación',  icon:'api', class: '' },
 ];
 
 @Component({
