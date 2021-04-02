@@ -1,19 +1,19 @@
-# <h1 align="center">NETLIFY SERVERLESS</h1>
-<p align="center"><i>A serverless Backend application developed with Express.js and deployed 🚀 in Netlify functions.</i></p>
+<h1 align="center">SIMPLE MONGO CRUD</h1>
+<p align="center"><i>A simple mongodb CRUD application developed in NodeJs with material-angular</i></p>
 <div align="center">
-  <a href="https://github.com/TheWorstOne/airlines-backend/stargazers"><img src="https://img.shields.io/github/stars/TheWorstOne/airlines-backend" alt="Stars Badge"/></a>
-<a href="https://github.com/TheWorstOne/airlines-backend/network/members"><img src="https://img.shields.io/github/forks/TheWorstOne/airlines-backend" alt="Forks Badge"/></a>
-<a href="https://github.com/TheWorstOne/airlines-backend/pulls"><img src="https://img.shields.io/github/issues-pr/TheWorstOne/airlines-backend" alt="Pull Requests Badge"/></a>
-<a href="https://github.com/TheWorstOne/airlines-backend/issues"><img src="https://img.shields.io/github/issues/TheWorstOne/airlines-backend" alt="Issues Badge"/></a>
-<a href="https://github.com/TheWorstOne/airlines-backend/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/TheWorstOne/airlines-backend?color=2b9348"></a>
-<a href="https://github.com/TheWorstOne/airlines-backend/blob/master/LICENSE"><img src="https://img.shields.io/github/license/TheWorstOne/airlines-backend?color=2b9348" alt="License Badge"/></a>
+  <a href="https://github.com/TheWorstOne/SimpleMongoCRUD/stargazers"><img src="https://img.shields.io/github/stars/TheWorstOne/SimpleMongoCRUD" alt="Stars Badge"/></a>
+<a href="https://github.com/TheWorstOne/SimpleMongoCRUD/network/members"><img src="https://img.shields.io/github/forks/TheWorstOne/SimpleMongoCRUD" alt="Forks Badge"/></a>
+<a href="https://github.com/TheWorstOne/SimpleMongoCRUD/pulls"><img src="https://img.shields.io/github/issues-pr/TheWorstOne/SimpleMongoCRUD" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/TheWorstOne/SimpleMongoCRUD/issues"><img src="https://img.shields.io/github/issues/TheWorstOne/SimpleMongoCRUD" alt="Issues Badge"/></a>
+<a href="https://github.com/TheWorstOne/SimpleMongoCRUD/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/TheWorstOne/SimpleMongoCRUD?color=2b9348"></a>
+<a href="https://github.com/TheWorstOne/SimpleMongoCRUD/blob/master/LICENSE"><img src="https://img.shields.io/github/license/TheWorstOne/SimpleMongoCRUD?color=2b9348" alt="License Badge"/></a>
 </div>
 <br>
 <p align="center"><i>Interested in the project? Please visit my <a href="https://awesome-github-readme-profile.netlify.app">website</a></i></p>
 <br>
 
 <!-- ABOUT THE PROJECT -->
-It is a good software engineering practice to separate portions of your code function to work independently of other parts. Since your codes are made up of functions basically, serverless functions allow you to deploy those functions without the complexity of managing a server to run them. This repository was created as part of a Big Data project in which services must be consumed from a database made in MondoDB with the historical information of the `flights of US airlines`. Check the [Demo](https://simplemongo-crud.web.app/flight-history)!
+This repository was created as part of a Big Data project in which services must be consumed from a database made in MondoDB with the historical information of the `flights of US airlines`. This project was designed to work as a front-end for the [Netlify Serverless](https://github.com/TheWorstOne/netlify-serverless) repo. Check the [Demo](https://simplemongo-crud.web.app/flight-history)!
 
 <p align="center">
   <a href="#">
@@ -28,37 +28,31 @@ If you like this Repo, Please click the :star:
 ## **Contents**
   - [Getting Started](#getting-started)
   - [Usage](#usage)
-  - [Deployment](#deployment)
   - [License](#license)
   - [Contact](#contact)
+  - [Acknowledgements](#acknowledgements)
 
   <!-- GETTING STARTED -->
 ## **Getting Started**
 
 This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps. Also, you can check this [tutorial](https://itnext.io/how-to-build-and-deploy-serverless-functions-to-netlify-d37418f6f7be).
+To get a local copy up and running follow these simple example steps.
 
 ### **Prerequisites**
 
-List of things you need to use this project and how to install them.
-* netlify CLI
-  ```sh
-  npm install -g netlify-cli
-  ```
+List of things you need to use this project.
+* [Netlify Serverless Backend](https://github.com/TheWorstOne/netlify-serverless) or any backend you have to publish your services
+* A Database to query your data (_we use MongoDB, you can use anything_)
 
 ### **Installation**
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/TheWorstOne/netlify-serverless.git
+   git clone https://github.com/TheWorstOne/SimpleMongoCRUD.git
    ```
 2. Install NPM packages
    ```sh
    npm install
-   ```
-3. Enter your MONGO URI in `.env` in the root directory for local deployment
-   ```SH
-   MONGO_DB_CONNECTION="mongodb+srv://<username>:<password>@<database>.n5qog.mongodb.net/<collection>?retryWrites=true&w=majority"
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -66,48 +60,18 @@ List of things you need to use this project and how to install them.
 
 To use this project in your local environment, follow the steps below.
 
-_For a more detailed explanation you can check this [guide](https://itnext.io/how-to-build-and-deploy-serverless-functions-to-netlify-d37418f6f7be)_
-
-1. To initialize the root folder with netlify
-   ```sh
-   netlify init
-   ```
-2. For local deployment you can use both commands
-   ```sh
-   npm start
-   netlify dev
-   ```
-3. To access serverless functions in the browser, use the URL
-   ```sh
-   http:localhost:PORT/.netlify/functions/app/
-   ```
-4. You can check all the functions in the `src/routes/flights.js`
+1. First of all you must configure the endpoint URL in the `src\app\rest.service.ts` file
    ```JS
-    router.post("/new", FlightController.createFlight);
-    router.get("/number/:FlightNum", FlightController.getFlightByNumber);
-    router.get("/search/:flightId", FlightController.getFlightById);
-    router.get("/numbers", FlightController.getFlightNumbers);
-    router.put("/update/:_id", FlightController.updateFlight);
-    router.delete("/delete/:flightId", FlightController.deleteFlight);
+    const endpoint = 'https://airlines-backend.netlify.app/.netlify/functions/app/flights/';
    ```
-    To access these services you must use the following URI `http:localhost:PORT/.netlify/functions/app/flights/<serverless function>`
+    That's all. You can put any URL you want here.
 
-
-<!-- DEPLOYMENT -->
-## **Deployment**
-
-If you want to deploy your own serverless on netlify, follow the next steps. Make sure your github repository is `linked to your project on the netlify website`
-1. Deploy to production
-   ```sh
-   netlify deploy --prod
+2. To test the project in local run these commands
+    ```sh
+    ng serve
+    npm start
    ```
-2. If you have problems with environment variables at deployment time, you can use the interface provided by the netlify website. In your site overview go to `Site settings > Build & deploy > Environment > Edit variables`
 
-<p align="center">
-  <a href="#">
-    <img src="assets/env.png" alt="Logo" width="" height="">
-  </a>
-</p>
 
 <!-- LICENSE -->
 ## **License**
@@ -121,4 +85,7 @@ Miguel Ángel Macías - 👨‍💻[Linkedin](https://www.linkedin.com/in/mangel
 
 My Personal Website: ✨[TBD](https://github.com/TheWorstOne/)
 
-
+<!-- ACKNOWLEDGEMENTS-->
+## **Acknowledgements**
+* [David Santos]()
+* [Kevin Maxi](https://github.com/KevinMaxi98)
