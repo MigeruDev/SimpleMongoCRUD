@@ -17,6 +17,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RestService } from './rest.service';
+import { SOAPService } from './soap.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { RestService } from './rest.service';
     AdminLayoutComponent,
 
   ],
-  providers: [RestService],
+  providers: [RestService, SOAPService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

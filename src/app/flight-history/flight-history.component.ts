@@ -15,8 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FlightHistoryComponent implements OnInit {
 
-  panelOpenState: boolean = false;
-
   displayedColumns = ['id', 'year','flightnum', 'origin','dest', 'deptime','cancelled', 'crud'];
 
   dataSource: MatTableDataSource<any>;

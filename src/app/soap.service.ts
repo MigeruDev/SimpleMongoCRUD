@@ -5,7 +5,7 @@ import {of} from "rxjs/observable/of";
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'https://airlines-backend.netlify.app/.netlify/functions/app/flights/';
+const endpoint = 'https://api.weather.gov/points/';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -22,34 +22,17 @@ export class SOAPService {
     return body || { };
   }
 
-  getFlightNumber(number): Observable<any> {
-    return this.http.get(endpoint + 'number/'+number).pipe(
+  /**------------- Get the URL Forecast for this location ------------------- */
+  getPoint(latitude, longitude): Observable<any> {
+    return this.http.get(endpoint + latitude+','+longitude).pipe(
       map(this.extractData));
   }
 
-  addNewFlight (flight): Observable<any> {
-    console.log(flight);
-    return this.http.post<any>(endpoint + 'new', JSON.stringify(flight), httpOptions).pipe(
-      tap((flight) => console.log(`generate flights w/ id=${flight}`)),
-      catchError(this.handleError<any>('generar Vuelo'))
-    );
-  }
-
-  updateFlight (_id, flight): Observable<any> {
-    console.log(flight);
-    return this.http.put<any>(endpoint + 'update/'+_id, JSON.stringify(flight), httpOptions).pipe(
-      tap((flight) => console.log(`generate flights w/ id=${flight}`)),
-      catchError(this.handleError<any>('actualizar Vuelo'))
-    );
-  }  
-
-  deleteFlight (_id): Observable<any> {
-    console.log();
-    return this.http.delete<any>(endpoint + 'delete/'+_id, httpOptions).pipe(
-      tap((flight) => console.log(`delete flight w/ id=${flight}`)),
-      catchError(this.handleError<any>('eliminar vuelo'))
-    );
-
+  /** -------Send the URL obtained from the location for the forecast --------*/
+  getForecast(forecastURL): Observable<any>{
+      return this.http.get(forecastURL).pipe(
+          map(this.extractData)
+      );
   }
 
 

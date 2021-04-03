@@ -6,6 +6,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { FlightInsertComponent } from '../../flight-insert/flight-insert.component';
 import { FlightHistoryComponent,  DialogOverviewExampleDialog} from '../../flight-history/flight-history.component';
 import { DevsComponent } from '../../devs/devs.component';
+import { ExtraComponent } from '../../extra/extra.component';
 
 import {
   MatButtonModule,
@@ -20,6 +21,7 @@ import {
   MatSelectModule,
   MatIconModule,
   MatDialogModule,
+  MatChipsModule
 } from '@angular/material';
 
 @NgModule({
@@ -39,12 +41,14 @@ import {
     MatRadioModule,
     MatSelectModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
   ],
   declarations: [
     FlightInsertComponent,
     FlightHistoryComponent,
     DevsComponent,
+    ExtraComponent,
     DialogOverviewExampleDialog,
   ],
   entryComponents: [FlightHistoryComponent, DialogOverviewExampleDialog],
